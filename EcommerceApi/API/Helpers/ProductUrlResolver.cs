@@ -22,7 +22,7 @@ namespace API.Helpers
         {
             if (!string.IsNullOrEmpty(source.ImageUrl))
             {
-                return _config["ApiUrl"] + source.ImageUrl;
+                return _config["ApiUrl"] +"images/products/"+ source.ImageUrl;
             }
             return null;
         }
