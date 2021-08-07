@@ -1,3 +1,4 @@
+import { shopParams } from './../shared/models/shopParams';
 import { IProductType } from './../shared/models/productType';
 import { IBrand } from './../shared/models/brand';
 import { IPagination } from '../shared/models/pagination';
@@ -13,22 +14,22 @@ export class ShopService {
   baseURL = "https://localhost:44332/api/"; 
   constructor(private http:HttpClient) { }
 
-  GetPeoducts(brandId?: number , typeId?: number,sort?:string){
+  GetPeoducts(shopParams:shopParams){
     let params = new HttpParams();
 
-    if(brandId){
-      params = params.append('brandId',brandId.toString());
+    if(shopParams.brandId !== 0){
+      params = params.append('brandId',shopParams.brandId.toString());
     }
 
-    if(typeId){
-      params = params.append('typeId',typeId.toString());
+    if(shopParams.typeId !== 0){
+      params = params.append('typeId',shopParams.typeId.toString());
     }
 
-    if(sort){
-      params = params.append('sort',sort);
-    }
+    params = params.append('sort',shopParams.sort);
+    params = params.append('pageSize',shopParams.pageSize?.toString());
+    params = params.append('pageIndex',shopParams.pageNumber?.toString());
 
-    return this.http.get<IPagination>(this.baseURL+'products?pageSize=50', {observe: 'response',params})
+    return this.http.get<IPagination>(this.baseURL+'products', {observe: 'response',params})
     .pipe(
       map(response =>{
         return response.body;

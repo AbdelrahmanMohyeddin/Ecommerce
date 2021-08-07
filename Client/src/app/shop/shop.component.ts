@@ -1,8 +1,11 @@
+import { AppPage } from './../../../e2e/src/app.po';
 import { IProductType } from './../shared/models/productType';
 import { IBrand } from './../shared/models/brand';
 import { IProduct } from '../shared/models/product';
 import { ShopService } from './shop.service';
 import { Component, OnInit } from '@angular/core';
+import { shopParams } from '../shared/models/shopParams';
+import { min } from 'rxjs/operators';
 
 @Component({
   selector: 'app-shop',
@@ -10,12 +13,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent implements OnInit {
-  products:IProduct[] | undefined;
+  products:IProduct[];
   brands: IBrand[];
   types:IProductType[];
-  brandSelected = 0;
-  typeSelected = 0;
-  sortSelected = "name";
+  totalCount: number;
+  shopParams = new shopParams();
   sortOptions = [
     {name:'Alphabetical',value:'name'},
     {name:'Low to High',value:'PriceAsc'},
@@ -30,9 +32,14 @@ export class ShopComponent implements OnInit {
   }
 
   Products(){
-    this.service.GetPeoducts(this.brandSelected,this.typeSelected,this.sortSelected).subscribe(
+    this.service.GetPeoducts(this.shopParams).subscribe(
       (response) =>{
-        this.products = response?.data;
+        if(response){
+          this.products = response.data;
+          this.shopParams.pageNumber = response.pageIndex;
+          this.shopParams.pageSize = response.pageSize;
+          this.totalCount = response.count;
+        }
       },
       (error : any) =>{
         console.log(error);
@@ -63,19 +70,27 @@ export class ShopComponent implements OnInit {
   }
 
   onBrandSelected(brandId : number){
-    this.brandSelected = brandId;
+    this.shopParams.brandId = brandId;
     this.Products();
   }
 
   onTypeSelected(typeId : number){
-    this.typeSelected = typeId;
+    this.shopParams.typeId = typeId;
     this.Products();
   }
 
   onSortChanged(sort:string){
-    this.sortSelected = sort;
+    this.shopParams.sort = sort;
     this.Products();
   }
 
+  onPageChanged(event : any){
+    this.shopParams.pageNumber = event.page;
+    console.log(event.page);
+    this.Products();
+  }
 
+  getNumberOfProductInPage(total:number, current:number){
+    return (total < current ? total : current);
+  }
 }
