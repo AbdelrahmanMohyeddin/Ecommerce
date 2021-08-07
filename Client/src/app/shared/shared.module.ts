@@ -3,9 +3,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ShopHeaderComponent } from './component/shop-header/shop-header.component';
 import { PagerComponent } from './component/pager/pager.component';
+import { ShopSearchComponent } from './component/shop-search/shop-search.component';
 
 @NgModule({
-  declarations: [ShopHeaderComponent, PagerComponent],
+  declarations: [ShopHeaderComponent, PagerComponent, ShopSearchComponent],
   imports: [
     CommonModule,
     PaginationModule.forRoot()
