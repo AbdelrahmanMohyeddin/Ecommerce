@@ -6,6 +6,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators'
 import { delay } from 'q';
+import { IProduct } from '../shared/models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -49,5 +50,7 @@ export class ShopService {
     return this.http.get<IProductType[]>(this.baseURL+'products/types');
   }
 
-
+  GetProduct(id:number){
+    return this.http.get<IProduct>(this.baseURL+"products/product/"+id);
+  }
 }

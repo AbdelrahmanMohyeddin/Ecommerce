@@ -9,7 +9,8 @@ import { ShopSearchComponent } from './component/shop-search/shop-search.compone
   declarations: [ShopHeaderComponent, PagerComponent, ShopSearchComponent],
   imports: [
     CommonModule,
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    
   ],
   exports:[
     PaginationModule,

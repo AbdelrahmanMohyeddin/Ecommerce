@@ -1,0 +1,17 @@
+<section *ngIf="product != null">
+    <div class="row">
+        <div class="col-6">
+            <img src="{{product.imageUrl}}" class="img-fluid w-100">
+        </div>
+        <div class="col-6">
+           <h4>{{product.name}}</h4>
+           <p>{{product.description}}</p>
+           <div class="d-flex justify-item-center justify-content-start">
+               <i class="fa fa-minus-circle text-warning mr-3" style="font-size:2em;cursor: pointer;"></i>
+                <span style="margin: 5px;font-size: 18px;font-weight: bold;">3</span>
+               <i class="fa fa-plus-circle text-warning mx-3" style="font-size: 2em;cursor: pointer;"></i>
+               <button class="btn btn-outline-primary">Add To Cart</button>
+            </div>
+        </div>
+    </div>
+</section>
