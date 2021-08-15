@@ -4,18 +4,20 @@ import { CommonModule } from '@angular/common';
 import { ShopHeaderComponent } from './component/shop-header/shop-header.component';
 import { PagerComponent } from './component/pager/pager.component';
 import { ShopSearchComponent } from './component/shop-search/shop-search.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ShopHeaderComponent, PagerComponent, ShopSearchComponent],
   imports: [
     CommonModule,
     PaginationModule.forRoot(),
-    
+    ReactiveFormsModule
   ],
   exports:[
     PaginationModule,
     ShopHeaderComponent,
-    PagerComponent
+    PagerComponent,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }
