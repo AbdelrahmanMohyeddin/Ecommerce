@@ -1,20 +1,15 @@
 <div class="d-flex justify-content-center mt-5">
-  <div class="col-6">
+  <div class="col-4">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="text-center">
         <h3 class="mb-4 font-weight-normal">Login</h3>
       </div>
-      <div class="form-label-group">
-        <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="on" >
-        <label for="inputEmail">Email address</label>
-      </div>
 
-      <div class="form-label-group">
-        <input formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required="" autocomplete="nope">
-        <label for="inputPassword">Password</label>
-      </div>
+        <app-text-input formControlName="email" [label] = "'Email Address'"></app-text-input>
+        <app-text-input formControlName="password" [label] = "'Password'" [type]="'password'"></app-text-input>
 
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        
+      <button [disabled]="loginForm.invalid" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
   </div>
 </div>

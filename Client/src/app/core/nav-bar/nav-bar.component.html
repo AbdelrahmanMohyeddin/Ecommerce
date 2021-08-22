@@ -8,16 +8,32 @@
     </nav>
     <div class="d-flex align-items-center">
         <a style="position: relative;">
-            <i class="fa fa-shopping-cart fa-2x mr-5 text-dark"></i>
-            <div class="cart-no">5</div>
+            <i routerLink="basket" style="cursor: pointer;" class="fa fa-shopping-cart fa-2x mr-5 text-dark"></i>
+            <div *ngIf="(basket$ | async) as basket" class="cart-no">{{basket.items.length}}</div>
         </a>
         <ng-container *ngIf="(currentUser$ | async) === null">
           <a class="btn btn-outline-secondary mr-2" routerLink="/account/login">Login</a>
           <a class="btn btn-outline-secondary mr-3" routerLink="/account/register">Sign up</a>
         </ng-container>
         <ng-container *ngIf="currentUser$ | async">
-          <a href="#">Welcome {{(currentUser$ | async)?.displayName}}</a>
+          <a href="#" class="mr-2" style="text-decoration: none;color: #444;">Welcome {{(currentUser$ | async)?.displayName}}</a>
           <button class="btn btn-outline-secondary mr-3" (click)="Logout()">Logout</button>
+
+          <div class="btn-group" dropdown>
+            <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+                    aria-controls="dropdown-basic">
+              Button dropdown <span class="caret"></span>
+            </button>
+            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+                role="menu" aria-labelledby="button-basic">
+              <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
+              <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
+              <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
+              <li class="divider dropdown-divider"></li>
+              <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
+              </li>
+            </ul>
+          </div>
         </ng-container>
       
     </div>

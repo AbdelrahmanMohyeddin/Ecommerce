@@ -17,6 +17,7 @@ import { AccountRoutingModule } from './account-routing.module';
     AccountRoutingModule,
     HttpClientModule,
     SharedModule
-  ]
+  ],
+  exports:[],
 })
 export class AccountModule { }

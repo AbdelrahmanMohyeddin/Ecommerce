@@ -5,19 +5,26 @@ import { ShopHeaderComponent } from './component/shop-header/shop-header.compone
 import { PagerComponent } from './component/pager/pager.component';
 import { ShopSearchComponent } from './component/shop-search/shop-search.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TextInputComponent } from './component/text-input/text-input.component';
+import { OrderTotalsComponent } from './component/order-totals/order-totals.component';
 
 @NgModule({
-  declarations: [ShopHeaderComponent, PagerComponent, ShopSearchComponent],
+  declarations: [ShopHeaderComponent, PagerComponent, ShopSearchComponent, TextInputComponent, OrderTotalsComponent],
   imports: [
     CommonModule,
     PaginationModule.forRoot(),
+    BsDropdownModule.forRoot(),
     ReactiveFormsModule
   ],
   exports:[
     PaginationModule,
     ShopHeaderComponent,
     PagerComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BsDropdownModule,
+    TextInputComponent,
+    OrderTotalsComponent
   ]
 })
 export class SharedModule { }

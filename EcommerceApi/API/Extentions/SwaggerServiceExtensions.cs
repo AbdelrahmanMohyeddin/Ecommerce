@@ -37,9 +37,7 @@ namespace API.Extensions
         public static IApplicationBuilder AddSwaggerMiddlerware(this IApplicationBuilder app)
         {
             app.UseSwagger();
-            app.UseSwaggerUI(c => 
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Store API v1"));
-
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Api v1"));
             return app;
         }
     }

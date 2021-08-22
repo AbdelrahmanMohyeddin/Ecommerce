@@ -7,7 +7,7 @@
       <div class="">
         <span class="mb-2">{{product.price | currency}}</span>
         <div class="btn-group mt-auto">
-          <button type="button" class="btn btn-sm btn-outline-secondary">
+          <button (click)="addItemToBasket()" type="button" class="btn btn-sm btn-outline-secondary">
             <i class="fa fa-shopping-cart text-dark"></i>
           </button>
           <button type="button" class="btn btn-sm btn-outline-secondary">View</button>

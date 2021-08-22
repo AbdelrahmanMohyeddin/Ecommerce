@@ -42,13 +42,13 @@ export class AccountService {
   }
 
   Register(values:any){
-    this.http.post<IUser>(this.baseUrl + "register",values).pipe(
+    return this.http.post<IUser>(this.baseUrl + "register",values).pipe(
       map((user:IUser) => {
         if(user){
           localStorage.setItem("token",user.token);
         }
       })
-    )
+    );
   }
 
   Logout(){
