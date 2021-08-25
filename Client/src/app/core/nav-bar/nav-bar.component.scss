@@ -10,3 +10,19 @@
     color: white;
     background-color: blue;
 }
+
+.btn-secondary {
+    color: black;
+    background-color: transparent;
+    border: none;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active, .show > .btn-secondary.dropdown-toggle {
+    color: black;
+    background-color: transparent;
+    border: none;
+}
+
+.dropdown-item{
+    cursor: pointer;
+}

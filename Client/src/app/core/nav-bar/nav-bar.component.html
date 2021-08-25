@@ -16,26 +16,18 @@
           <a class="btn btn-outline-secondary mr-3" routerLink="/account/register">Sign up</a>
         </ng-container>
         <ng-container *ngIf="currentUser$ | async">
-          <a href="#" class="mr-2" style="text-decoration: none;color: #444;">Welcome {{(currentUser$ | async)?.displayName}}</a>
-          <button class="btn btn-outline-secondary mr-3" (click)="Logout()">Logout</button>
-
-          <div class="btn-group" dropdown>
-            <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
-                    aria-controls="dropdown-basic">
-              Button dropdown <span class="caret"></span>
+          
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle text-muted" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <strong> {{(currentUser$ | async)?.displayName}}</strong>
             </button>
-            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
-                role="menu" aria-labelledby="button-basic">
-              <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
-              <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
-              <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
-              <li class="divider dropdown-divider"></li>
-              <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
-              </li>
-            </ul>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a (click)="Logout()" class="dropdown-item" >Logout</a>
+            </div>
           </div>
-        </ng-container>
-      
+
+        </ng-container>  
     </div>
-    
   </div>

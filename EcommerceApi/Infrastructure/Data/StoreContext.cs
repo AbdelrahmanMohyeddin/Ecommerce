@@ -14,7 +14,11 @@ namespace Infrastructure.Data
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductBrand> productBrands { get; set; }
-        public DbSet<ProductType> ProductTypes { get; set; }
+        public DbSet<ProductType> productTypes { get; set; }
+        public DbSet<Order> orders { get; set; }
+        public DbSet<OrderItem> orderItems { get; set; }
+        public DbSet<DeliveryMethod> deliveryMethods { get; set; }
+
 
         public StoreContext(DbContextOptions<StoreContext> options) : base(options) { }
 
