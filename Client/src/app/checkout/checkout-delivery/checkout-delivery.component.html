@@ -1,0 +1,29 @@
+<div class="mt-4 ml-4" [formGroup]="checkOutForm">
+    <div class="row">
+        <div class="col-6 form-group" *ngFor="let method of deliveryMethods" formGroupName="deliveryForm">
+            <input type="radio"
+              (click)="setShippingPrice(method)"
+              value = {{method.price}}
+              id = "{{method.id}}"
+              name = "deliveryMethod"
+              formControleName = "deliveryMethodId"
+              class = "custom-control-input"
+              [checked] = "method.id == selectedBasketId"
+            >
+            <label for="{{method.id}}" style="cursor: pointer;"  class="custom-control-label">
+                <strong >{{method.shortName}} - {{method.price | currency}}</strong>
+                <br>
+                <span class="label-description">{{method.description}}</span>
+            </label>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex justify-content-between flex-column flex-lg-row">
+    <button class="btn btn-outline-primary" cdkStepperPrevious>
+        <i class="fa fa-angle-left"></i> Back to Address
+    </button>
+    <button class="btn btn-primary" cdkStepperNext>
+        Go to Review <i class="fa fa-angle-right"></i>
+    </button>
+</div>

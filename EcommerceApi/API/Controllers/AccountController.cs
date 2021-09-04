@@ -92,7 +92,7 @@ namespace API.Controllers
             return _mapper.Map<Address,AddressDto>(user.Address);
         }
 
-        [Authorize]
+        
         [HttpPut("address")]
         public async Task<ActionResult<AddressDto>> UpdateAddress([FromBody]AddressDto address)
         {

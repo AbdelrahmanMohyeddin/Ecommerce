@@ -1,3 +1,4 @@
+import { IAddress } from './../shared/models/address';
 import { map } from 'rxjs/operators';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
@@ -61,6 +62,12 @@ export class AccountService {
     return this.http.get(this.baseUrl + "emailexist?email=" + email);
   }
 
+  getUserAddress(){
+    return this.http.get<IAddress>(this.baseUrl + "address");
+  }
 
+  updateUserAddress(address:IAddress){
+    return this.http.put<IAddress>(this.baseUrl + "address",address);
+  }
 
 }

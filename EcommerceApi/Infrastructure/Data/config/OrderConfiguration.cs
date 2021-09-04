@@ -12,7 +12,8 @@ namespace Infrastructure.Data.config
         public void Configure(EntityTypeBuilder<Order> builder)
         {
             builder.OwnsOne(o => o.ShipToAddress, a =>{ a.WithOwner();});
-
+            builder.Property(i => i.Subtotal)
+                .HasColumnType("decimal(18,2)");
             builder.Property(s => s.Status)
                 .HasConversion(
                     o => o.ToString(),

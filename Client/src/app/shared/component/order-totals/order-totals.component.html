@@ -1,17 +1,17 @@
 <p class="p-2" style="background-color:rgb(204, 203, 203);color: rgb(1, 4, 7);"><strong>Order Totals</strong></p>
 <div class="p-4">
-    <ul class="list-unstyled " *ngIf="(basketTotal$ | async)">
+    <ul class="list-unstyled " *ngIf="basketTotal">
         <li class="d-flex justify-content-between py-3 border-bottom">
             <strong class="text-muted">Shipping</strong>
-            <strong>{{ (basketTotal$ | async)?.shipping |currency}}</strong>
+            <strong>{{ basketTotal.shipping |currency}}</strong>
         </li>
         <li class="d-flex justify-content-between py-3 border-bottom">
             <strong class="text-muted">SubTotal</strong>
-            <strong>{{(basketTotal$ | async)?.subTotal | currency}}</strong>
+            <strong>{{basketTotal.subTotal | currency}}</strong>
         </li>
         <li class="d-flex justify-content-between py-3 border-bottom">
             <strong class="text-muted">Total</strong>
-            <strong>{{(basketTotal$ | async)?.total | currency}}</strong>
+            <strong>{{basketTotal.total | currency}}</strong>
         </li>
     </ul>
 </div>

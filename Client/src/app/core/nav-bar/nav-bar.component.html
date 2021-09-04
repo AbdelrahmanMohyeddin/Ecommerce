@@ -6,10 +6,10 @@
       <a class="p-2 text-dark" routerLink ="shop" >Shop</a>
       <a class="p-2 text-dark" href="#">Contact</a>
     </nav>
-    <div class="d-flex align-items-center">
+    <div class="d-flex  align-items-center">
         <a style="position: relative;">
             <i routerLink="basket" style="cursor: pointer;" class="fa fa-shopping-cart fa-2x mr-5 text-dark"></i>
-            <div *ngIf="(basket$ | async) as basket" class="cart-no">{{basket.items.length}}</div>
+            <div *ngIf="basket$ | async" class="cart-no text-center">{{(basket$ | async).items.length}}</div>
         </a>
         <ng-container *ngIf="(currentUser$ | async) === null">
           <a class="btn btn-outline-secondary mr-2" routerLink="/account/login">Login</a>
@@ -22,9 +22,15 @@
              <strong> {{(currentUser$ | async)?.displayName}}</strong>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a (click)="Logout()" class="dropdown-item" >Logout</a>
+              <a class="dropdown-item" href="#" routerLink="./basket">
+                <i class="fa fa-shopping-cart mr-2"></i>View basket
+              </a>
+              <a class="dropdown-item" href="#" routerLink="./order">
+                <i class="fa fa-shopping-bag fa-1x mr-2" aria-hidden="true"></i>My Orders
+              </a>
+              <a (click)="Logout()" class="dropdown-item">
+                <i class="fa fa-sign-out mr-2" style="color:aliceblue!;"></i>Logout
+              </a>
             </div>
           </div>
 

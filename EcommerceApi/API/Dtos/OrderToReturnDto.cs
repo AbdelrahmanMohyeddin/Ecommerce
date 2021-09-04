@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace API.Dtos
 {
     public class OrderToReturnDto
-    {
+    { 
         public int Id { get; set; }
         public string BuyerEmail { get; set; }
         public DateTimeOffset OrderDate { get; set; } = DateTimeOffset.Now;

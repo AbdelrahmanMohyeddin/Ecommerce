@@ -6,7 +6,9 @@
     font-size: 1em;
     min-width: 25px;
     min-height: 25px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: white;
     background-color: blue;
 }

@@ -1,54 +1,19 @@
 <div class="text-center" *ngIf="(basket$ | async) == null">
     You are not have items in basket
 </div>
-<div class="container" *ngIf="(basket$ | async) as basket">
+<div class="container">
     <div class="">
         <div class="row">
             <div class="col-sm-12 col-md-12 col-md-offset-1">
-                <table class="table table-hover">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>Product</th>
-                            <th>Quantity</th>
-                            <th class="text-center">Price</th>
-                            <th class="text-center">Total</th>
-                            <th> </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="p-0" *ngFor="let item of basket.items">
-                            <td class="col-sm-8 col-md-6">
-                                <div class="media">
-                                    <a class="thumbnail pull-left" href="#"> 
-                                        <img class="media-object img-fluid m-0" src="{{item.imageUrl}}" style="width: 48px; height: 48px;color:blueviolet"> 
-                                    </a>
-                                    <div class="m-0">
-                                        <h5 class="ml-3"><a href="#">{{item.productName}}</a></h5>
-                                        <span class="mx-0 ml-3 text-muted font-italic" style="color: #444;"> by {{item.brand}}</span>
-                                        <!-- <span>Status: </span><span class="text-success"><strong>In Stock</strong></span> -->
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="col-sm-1 col-md-1" style="text-align: center">
-                                <div class="d-flex align-items-center">
-                                    <i (click)="decrementItemQuantity(item)" class="fa fa-minus-circle fa-2x mr-2 text-warning" style="cursor: pointer;"></i>
-                                    <div class="" style="font-weight: bolder; font-size: 18px;">{{item.quantity}}</div>
-                                    <i (click)="incrementItemQuantity(item)" class="fa fa-plus-circle fa-2x mx-2 ml-2 text-warning" style="cursor: pointer;"></i>
-                                </div>
-                            </td>
-                            <td class="col-sm-1 col-md-1 text-center"><strong>{{item.price | currency}}</strong></td>
-                            <td class="col-sm-1 col-md-1 text-center"><strong>{{item.price * item.quantity | currency}}</strong></td>
-                            <td class="col-sm-1 col-md-1 ">
-                               <i (click)="removeBasketItem(item)" class="fa fa-trash fa-2x text-danger" style="cursor: pointer;"></i>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <app-basket-summary 
+                    [items] = "(basket$ | async)?.items" 
+                >
+                </app-basket-summary>
             </div>
         </div>
         <div class="row">
             <div class="col-6 offset-6">
-                <app-order-totals></app-order-totals>
+                <app-order-totals [basketTotal] = "(basketTotals$ | async)"></app-order-totals>
                 <a routerLink="/checkout" class="btn btn-outline-danger btn-block mb-3">checkout</a>
             </div>
         </div>

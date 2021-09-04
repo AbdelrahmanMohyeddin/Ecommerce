@@ -7,7 +7,6 @@ namespace Core.Entities.OrderAggregate
 {
     public class ProductItemOrdered
     {
-        [Key]
         public int ProductItemId { get; set; }
         public string ProducyName { get; set; }
         public string ImageUrl { get; set; }

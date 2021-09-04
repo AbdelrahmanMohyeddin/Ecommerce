@@ -1,0 +1,219 @@
+[
+  {
+    "Name": "xiaomi black shark",
+    "Description": "Product Description",
+    "Price": 300.00,
+    "ImageUrl": "xiaomi-black-shark-3s.jpg",
+    "ProductTypeId": 2,
+    "ProductBrandId": 4
+  },
+  {
+    "Name": "xiaomi mi10",
+    "Description": "angular is a framwork",
+    "Price": 495.00,
+    "ImageUrl": "xiaomi-mi-10-5g.jpg",
+    "ProductTypeId": 2,
+    "ProductBrandId": 4
+  },
+  {
+    "Name": "IPhone 11 pro",
+    "Description": "core core core",
+    "Price": 544.00,
+    "ImageUrl": "xiaomi-mi10-lite-5g.jpg",
+    "ProductTypeId": 2,
+    "ProductBrandId": 1
+  },
+  {
+    "Name": "IPhone Pro max",
+    "Description": "bootstrap bootstrap",
+    "Price": 234.00,
+    "ImageUrl": "xiaomi-mi-10-pro-5g.jpg",
+    "ProductTypeId": 2,
+    "ProductBrandId": 1
+  },
+  {
+    "Name": "xiaomi mi10 ultra",
+    "Description": "Gooooo",
+    "Price": 12003.00,
+    "ImageUrl": "xiaomi-mi10-ultra.jpg",
+    "ProductTypeId": 2,
+    "ProductBrandId": 4
+  },
+  {
+    "Name": "Nokia S30",
+    "Description": "face book",
+    "Price": 344.00,
+    "ImageUrl": "xiaomi-mi-cc9-pro-.jpg",
+    "ProductTypeId": 2,
+    "ProductBrandId": 3
+  },
+  {
+    "Name": "xiaomi poco x3 nfc",
+    "Description": "club for house",
+    "Price": 900.00,
+    "ImageUrl": "xiaomi-poco-x3-nfc.jpg",
+    "ProductTypeId": 2,
+    "ProductBrandId": 4
+  },
+  {
+    "Name": "xiaomi redmi 9a",
+    "Description": "yahoooo",
+    "Price": 554.00,
+    "ImageUrl": "xiaomi-redmi-9a-1.jpg",
+    "ProductTypeId": 2,
+    "ProductBrandId": 4
+  },
+  {
+    "Name": "samsung A52",
+    "Description": "samsung phone",
+    "Price": 300.00,
+    "ImageUrl": "xiaomi-redmi-10x-pro-5g.jpg",
+    "ProductTypeId": 2,
+    "ProductBrandId": 2
+  },
+  {
+    "Name": "samsung m32",
+    "Description": "samsung phone",
+    "Price": 230.00,
+    "ImageUrl": "xiaomi-redmi-k30-5g-racing-edition1.jpg",
+    "ProductTypeId": 2,
+    "ProductBrandId": 2
+  },
+  {
+    "Name": "samsung A31",
+    "Description": "samsung phone",
+    "Price": 400.00,
+    "ImageUrl": "xiaomi-redmi-k30-pro-zoom.jpg",
+    "ProductTypeId": 2,
+    "ProductBrandId": 2
+  },
+  {
+    "Name": "boot ang1",
+    "Description": "boot",
+    "Price": 20.00,
+    "ImageUrl": "boot-ang1.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 5
+  },
+  {
+    "Name": "boot ang2",
+    "Description": "boot",
+    "Price": 30.00,
+    "ImageUrl": "boot-ang2.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 6
+  },
+  {
+    "Name": "boot core1",
+    "Description": "boot",
+    "Price": 40.00,
+    "ImageUrl": "boot-core1.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 7
+  },
+  {
+    "Name": "boot core2",
+    "Description": "boot",
+    "Price": 40.00,
+    "ImageUrl": "boot-core2.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 7
+  },
+  {
+    "Name": "glove code1",
+    "Description": "glove",
+    "Price": 20.00,
+    "ImageUrl": "glove-code1.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 5
+  },
+  {
+    "Name": "glove code2",
+    "Description": "glove",
+    "Price": 45.00,
+    "ImageUrl": "glove-code2.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 8
+  },
+  {
+    "Name": "glove react1",
+    "Description": "glove",
+    "Price": 100.00,
+    "ImageUrl": "glove-react1.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 9
+  },
+  {
+    "id": 1027,
+    "Name": "glove react2",
+    "Description": "glove",
+    "Price": 40.00,
+    "ImageUrl": "glove-react2.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 8
+  },
+  {
+    "Name": "hat core",
+    "Description": "hate",
+    "Price": 20.00,
+    "ImageUrl": "hat-core1.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 5
+  },
+  {
+    "Name": "hat react1",
+    "Description": "hate",
+    "Price": 22.00,
+    "ImageUrl": "hat-react1.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 9
+  },
+  {
+    "Name": "hat react2",
+    "Description": "hat",
+    "Price": 50.00,
+    "ImageUrl": "hat-react2.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 8
+  },
+  {
+    "Name": "sb angular",
+    "Description": "sb",
+    "Price": 100.00,
+    "ImageUrl": "sb-ang1.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 7
+  },
+  {
+    "Name": "sb core1",
+    "Description": "sb cor",
+    "Price": 70.00,
+    "ImageUrl": "sb-core1.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 5
+  },
+  {
+    "Name": "sb core2",
+    "Description": "sb core 2",
+    "Price": 30.00,
+    "ImageUrl": "sb-core2.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 8
+  },
+  {
+    "Name": "sb angular 2",
+    "Description": "sb angular",
+    "Price": 45.00,
+    "ImageUrl": "sb-ang2.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 9
+  },
+  {
+    "Name": "Test Product",
+    "Description": "Test TEst TESt TEST",
+    "Price": 3434.00,
+    "ImageUrl": "hhhh",
+    "ProductTypeId": 1,
+    "ProductBrandId": 2
+  }
+]

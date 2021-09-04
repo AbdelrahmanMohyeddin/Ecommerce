@@ -1,3 +1,4 @@
+import { IDeliveryMethod } from './../shared/models/deliveryMethod';
 import { IProduct } from './../shared/models/product';
 import { HttpClient } from '@angular/common/http';
 import { Basket, IBasket, IBasketItem, IBasketTotals } from './../shared/models/basket';
@@ -11,12 +12,32 @@ import { map } from 'rxjs/operators';
 })
 export class BasketService {
   baseUrl = environment.apiUrl;
-  private basketSource = new BehaviorSubject<IBasket | null>(null);
+  private basketSource = new BehaviorSubject<IBasket>(null);
   basket$ = this.basketSource.asObservable();
-  private basketTotalSource = new BehaviorSubject<IBasketTotals | null>(null);
+  private basketTotalSource = new BehaviorSubject<IBasketTotals>(null);
   basketTotal$ = this.basketTotalSource.asObservable();  
+  shipping = 0;
 
   constructor(private http:HttpClient) { }
+
+  createPaymentIntent(){
+    return this.http.post<IBasket>(this.baseUrl + "payment/" + this.getCurrentBasketValue().id,{})
+    .pipe(
+      map((res : IBasket) =>{
+        this.basketSource.next(res);
+        return res;
+      })
+    );
+  }
+
+  setShippingPrice(deliveryMethod:IDeliveryMethod){
+    this.shipping = deliveryMethod.price;
+    var basket = this.getCurrentBasketValue();
+    basket.deliveryMethodId = deliveryMethod.id;
+    basket.shippingPrice = deliveryMethod.price;
+    this.calculateTotals();
+    this.setBasket(basket);
+  }
 
   getBasket(id:string){
     return this.http.get<IBasket>(this.baseUrl+'basket?id='+id).pipe(
@@ -31,6 +52,7 @@ export class BasketService {
     return this.http.post<any>(this.baseUrl+'basket',basket).subscribe(
       (response:IBasket)=>{
         this.basketSource.next(response);
+        this.shipping = response.shippingPrice;
         this.calculateTotals();
       },err =>{
         console.log(err);
@@ -50,7 +72,6 @@ export class BasketService {
     if(index === -1){
       itemToAdd.quantity = quantity;
       items.push(itemToAdd);
-      console.log(items);
     }else{
       items[index].quantity += quantity;
     }
@@ -59,11 +80,10 @@ export class BasketService {
 
   private calculateTotals(){
     let basket = this.getCurrentBasketValue();
-    let shipping = 0;
+    let shipping = this.shipping;
     let subTotal = basket?.items.reduce((a,b) => (b.price * b.quantity) + a,0)??0;
     let total = subTotal + shipping;
     this.basketTotalSource.next({shipping,total,subTotal});
-    console.log(this.basketTotal$);
   }
 
   incrementItemQuantity(item:IBasketItem) : void{
