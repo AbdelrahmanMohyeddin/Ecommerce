@@ -1,25 +1,30 @@
-<div class="d-flex flex-column flex-md-row align-items-center justify-content-between fixed-top p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+<div class="fixed-top" id="nav-container">
+  <!-- <div class="top-navbar d-flex flex-column flex-md-row align-items-center justify-content-between ">
+    {{(this.windowScroll)}}
+  </div> -->
+  <div class="main-navbar d-flex flex-column flex-md-row align-items-center justify-content-between p-3 px-md-4 mb-3 bg-dark navbar-dark border-bottom box-shadow">
     <img src="../../assets/images/logo.png" style="max-height:40px" class="m-0">
 
     <nav class="my-2 my-md-0 mr-md-3 text-uppercase" style="font: larger;">
-      <a class="p-2 text-dark" routerLink="">Home</a>
-      <a class="p-2 text-dark" routerLink ="shop" >Shop</a>
-      <a class="p-2 text-dark" href="#">Contact</a>
+      <!-- <a class="p-2 text-white" routerLink="home">Home</a> -->
+      <a class="p-2 text-white" routerLink ="shop" >Shop</a>
+      <a class="p-2 text-white" href="">Contact</a>
+      <a *ngIf="isAdmin" class="p-2 text-white" href="admin">admin</a>
     </nav>
-    <div class="d-flex  align-items-center">
+    <div class="d-flex align-items-center">
         <a style="position: relative;">
-            <i routerLink="basket" style="cursor: pointer;" class="fa fa-shopping-cart fa-2x mr-5 text-dark"></i>
+            <i routerLink="basket" style="cursor: pointer;" class="fa fa-shopping-cart fa-2x mr-5 text-white"></i>
             <div *ngIf="basket$ | async" class="cart-no text-center">{{(basket$ | async).items.length}}</div>
         </a>
         <ng-container *ngIf="(currentUser$ | async) === null">
-          <a class="btn btn-outline-secondary mr-2" routerLink="/account/login">Login</a>
-          <a class="btn btn-outline-secondary mr-3" routerLink="/account/register">Sign up</a>
+          <a class="btn btn-outline-secondary text-white mr-2" routerLink="account/login">Login</a>
+          <a class="btn btn-outline-secondary text-white mr-3" routerLink="account/register">Sign up</a>
         </ng-container>
         <ng-container *ngIf="currentUser$ | async">
           
           <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle text-muted" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-             <strong> {{(currentUser$ | async)?.displayName}}</strong>
+            <button class="btn btn-secondary dropdown-toggle text-white text-muted" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <strong class="text-white"> {{(currentUser$ | async)?.displayName}}</strong>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" href="#" routerLink="./basket">
@@ -37,3 +42,4 @@
         </ng-container>  
     </div>
   </div>
+</div>

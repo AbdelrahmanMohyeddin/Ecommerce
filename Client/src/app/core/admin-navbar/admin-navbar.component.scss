@@ -1,0 +1,41 @@
+.top-navbar{
+    height: 50px;
+    background: #418edb;
+    color: #000;
+}
+.cart-no{
+    position: absolute;
+    top: -12px;
+    right: 32px;
+    border-radius: 50%;
+    font-size: 1em;
+    min-width: 25px;
+    min-height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: blue;
+}
+
+.btn-secondary {
+    color: white;
+    background-color: transparent;
+    border: none;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active, .show > .btn-secondary.dropdown-toggle {
+    color: black;
+    background-color: transparent;
+    border: none;
+}
+
+.dropdown-item{
+    cursor: pointer;
+    
+}
+
+.main-navbar{
+    background:linear-gradient(90deg,#003da6,#00a98f);
+    z-index: 999;
+}

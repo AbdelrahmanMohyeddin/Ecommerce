@@ -1,5 +1,6 @@
 ﻿using Core.Entities.Identity;
 using Core.Interfaces;
+using Infrastructure.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -21,13 +22,21 @@ namespace Infrastructure.Services
             _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Token:Key"]));
         }
 
-        public string CreateToken(AppUser appUser)
+        public string CreateToken(AppUser appUser,IList<string> userRoles)
         {
+            
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Email,appUser.Email),
                 new Claim(JwtRegisteredClaimNames.GivenName,appUser.DisplayName)
+                
             };
+
+
+            foreach (var role in userRoles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
 
             var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha256Signature);
 
@@ -36,7 +45,7 @@ namespace Infrastructure.Services
                 Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.Now.AddDays(7),
                 Issuer = _config["Token:Issuer"],
-                SigningCredentials = creds
+                SigningCredentials = creds,
             };
              
             var tokenHundler = new JwtSecurityTokenHandler();

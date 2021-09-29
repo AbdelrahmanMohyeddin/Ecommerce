@@ -1,0 +1,30 @@
+<div [class.mobile-nav-active] = "mobileNavActive" >
+    <i [class]="ButtonNave" class="fas mobile-nav-toggle d-xl-flex" (click)="mobileNaveToggle()"></i>
+    
+    <header id="header">
+        <div class="d-flex flex-column">
+            <nav id="navbar" class="nav-menu navbar">
+                <ul>
+                    <li>
+                        <a routerLink="" class="nav-link scrollto">
+                            <i class="bx bx-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="about" class="nav-link scrollto">
+                            <i class="bx bx-user"></i> 
+                            <span>About</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="resume" class="nav-link scrollto">
+                            <i class="bx bx-file-blank"></i> 
+                            <span>Resume</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+  </div>

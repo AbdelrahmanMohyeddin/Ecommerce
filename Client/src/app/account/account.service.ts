@@ -25,6 +25,7 @@ export class AccountService {
         if(User){
           localStorage.setItem("token",User.token);
           this.CurrentUserSource.next(User);
+          console.log(User);
         }
       })
     );
@@ -37,6 +38,7 @@ export class AccountService {
         if(user){
           localStorage.setItem("token",user.token);
           this.CurrentUserSource.next(user);
+          this.loadCurrentUser(user.token);
         }
       })
     );
@@ -47,6 +49,7 @@ export class AccountService {
       map((user:IUser) => {
         if(user){
           localStorage.setItem("token",user.token);
+          console.log(user);
         }
       })
     );

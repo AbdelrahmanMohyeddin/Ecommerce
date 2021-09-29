@@ -1,4 +1,4 @@
-import { BasketService } from './../../../basket/basket.service';
+import { BasketService } from './../../../user/basket/basket.service';
 import { Observable } from 'rxjs';
 import { Component, Input, OnInit } from '@angular/core';
 import { IBasketTotals } from '../../models/basket';

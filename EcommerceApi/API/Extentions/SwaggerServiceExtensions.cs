@@ -10,7 +10,8 @@ namespace API.Extensions
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo {Title = "Store Api", Version = "v1"});
+                c.IncludeXmlComments(string.Format(@"{0}\API.xml", System.AppDomain.CurrentDomain.BaseDirectory));
+                c.SwaggerDoc("v1", new OpenApiInfo { Version = "v1", Title = "API" });
 
                 //var securitySchema = new OpenApiSecurityScheme
                 //{
@@ -27,7 +28,7 @@ namespace API.Extensions
                 //};
 
                 //c.AddSecurityDefinition("Bearer", securitySchema);
-                //var securityRequirement = new OpenApiSecurityRequirement {{securitySchema, new [] {"Bearer"}}};
+                //var securityRequirement = new OpenApiSecurityRequirement { { securitySchema, new[] { "Bearer" } } };
                 //c.AddSecurityRequirement(securityRequirement);
             });
 
@@ -37,7 +38,10 @@ namespace API.Extensions
         public static IApplicationBuilder AddSwaggerMiddlerware(this IApplicationBuilder app)
         {
             app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Api v1"));
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json","API");
+            });
             return app;
         }
     }

@@ -1,0 +1,29 @@
+<div class="container">
+    <form class="row" [formGroup]="CreateProductForm" (ngSubmit)="onSubmit()">
+        <div class="col-sm-12 col-md-6">
+            <app-text-input formControlName="name" [label] = "'Name'"></app-text-input>
+            <app-text-input formControlName="description" [label] = "'Description'"></app-text-input>
+            <app-text-input formControlName="price" [label] = "'Price'"></app-text-input>
+            <select class="form-select" formControlName="productBrand">
+                <option disabled selected>Select Brand</option>
+                <option *ngFor="let brand of Brands"  value={{brand.id}}>{{brand.name}}</option>
+            </select>
+
+            <select class="form-select mt-3" formControlName="productType">
+                <option disabled selected>Select Type</option>
+                <option *ngFor="let type of Types"  value={{type.id}}>{{type.name}}</option>
+            </select>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <div class="custom-file">
+                <input type="file" formControlName="imageUrl" class="custom-file-input" multiple id="imageUrl" (change)="onFileChange($event.target.files)">
+                <label class="custom-file-label" #labelImport for="imageUrl">Choose file</label>
+            </div>
+            <div class="prview-image d-flex justify-content-center align-items-center">
+                <img [src]="imgURL" *ngIf="imgURL" height="250">
+            </div>
+            
+        </div>
+        <button [disabled]="CreateProductForm.invalid" class="btn btn-lg btn-primary btn-block m-3" type="submit">Create</button>
+    </form>
+  </div>

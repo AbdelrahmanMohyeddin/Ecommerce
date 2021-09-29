@@ -15,19 +15,24 @@ namespace Infrastructure.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IBasketRepository _basket;
+        private readonly IPaymentService _paymentService;
 
         public OrderService(IUnitOfWork unitOfWork,
             IBasketRepository basket,
-            StoreContext context)
+            StoreContext context,
+            IPaymentService paymentService)
         {
             _unitOfWork = unitOfWork;
             _basket = basket;
+            _paymentService = paymentService;
         }
 
         public async Task<Order> CreateOrderAsync(string bayerEmail, int deliveryMethodId, string basketId, Address address)
         {
             // basket
             var basket = await _basket.GetBasketAsync(basketId);
+
+            if (basket == null) return null;
             // products
             var items = new List<OrderItem>();
             foreach (var item in basket.Items)
@@ -44,17 +49,25 @@ namespace Infrastructure.Services
             // deliveryMethod
             var deliveryMethod = await _unitOfWork.repository<DeliveryMethod>().GetByIdAsync(deliveryMethodId);
 
+            var spec = new OrderByPaymentWithItemsSpecification(basket.PaymentIntentId);
 
-            var order = new Order(items, bayerEmail, address, deliveryMethod, subtotal, "");
+            var existingOrder = await _unitOfWork.repository<Order>().GetEntityWithSpec(spec);
 
-            await _unitOfWork.repository<Order>().Add(order);
 
+            if(existingOrder != null)
+            {
+                _unitOfWork.repository<Order>().Delete(existingOrder);
+                await _paymentService.CreateOrUpdatePaymentIntent(basket.PaymentIntentId);
+            }
+
+
+            var order = new Order(items, bayerEmail, address, deliveryMethod, subtotal, basket.PaymentIntentId);
+
+            _unitOfWork.repository<Order>().Add(order);
 
             var result = await _unitOfWork.Complete();
 
             if (result <= 0) return null;
-
-            await _basket.DeleteBasketAsync(basketId);
 
             return order;
         }

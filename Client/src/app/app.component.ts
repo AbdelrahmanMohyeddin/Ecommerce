@@ -1,4 +1,5 @@
-import { BasketService } from './basket/basket.service';
+import { ToastrService } from 'ngx-toastr';
+import { BasketService } from './user/basket/basket.service';
 import { AccountService } from './account/account.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,7 +12,7 @@ export class AppComponent implements OnInit{
   
   title = 'Client';
 
-  constructor(private accountService:AccountService,private basketService:BasketService) {
+  constructor(private accountService:AccountService, private basketService:BasketService) {
   }
 
   ngOnInit(): void {
@@ -22,7 +23,10 @@ export class AppComponent implements OnInit{
   loadCurrentUser(){
     const token = localStorage.getItem("token");
     if(token){
-      this.accountService.loadCurrentUser(token).subscribe();
+      this.accountService.loadCurrentUser(token).subscribe(
+        ()=>{
+        }
+      );
     }
   }
 
@@ -31,6 +35,7 @@ export class AppComponent implements OnInit{
     if(basketId){
       this.basketService.getBasket(basketId).subscribe(
         () => {
+
         },err =>{
           console.log(err);
         }

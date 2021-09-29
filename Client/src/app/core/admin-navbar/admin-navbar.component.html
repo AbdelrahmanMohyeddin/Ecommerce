@@ -1,0 +1,39 @@
+<div class="fixed-top" id="nav-container">
+    <div class="main-navbar d-flex flex-column flex-md-row align-items-center justify-content-between p-3 px-md-4 mb-3 bg-dark navbar-dark border-bottom box-shadow">
+      <!-- <img src="../../assets/images/logo.png" style="max-height:40px" class="m-0"> -->
+      <span></span>
+      <nav class="my-2 my-md-0 mr-md-3 text-uppercase" style="font: larger;">
+        <a class="p-2 text-white" routerLink="dashboard">Dashboard</a>
+        <a class="p-2 text-white" routerLink="product">Products</a>
+        <a class="p-2 text-white" routerLink="brand">Brands</a>
+        <a class="p-2 text-white" routerLink="category">Categories</a>
+        <a class="p-2 text-white" routerLink ="../shop" >Shop</a>
+      </nav>
+      <div class="d-flex align-items-center">
+          <ng-container *ngIf="(currentUser$ | async) === null">
+            <a class="btn btn-outline-secondary text-white mr-2" routerLink="admin/account/login">Login</a>
+            <!-- <a class="btn btn-outline-secondary text-white mr-3" routerLink="admin/account/register">Sign up</a> -->
+          </ng-container>
+          <ng-container *ngIf="currentUser$ | async">
+            
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle text-white text-muted" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               <strong class="text-white"> {{(currentUser$ | async)?.displayName}}</strong>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#" routerLink="./basket">
+                  <i class="fa fa-shopping-cart mr-2"></i>View basket
+                </a>
+                <a class="dropdown-item" href="#" routerLink="./order">
+                  <i class="fa fa-shopping-bag fa-1x mr-2" aria-hidden="true"></i>My Orders
+                </a>
+                <a (click)="Logout()" class="dropdown-item">
+                  <i class="fa fa-sign-out mr-2" style="color:aliceblue!;"></i>Logout
+                </a>
+              </div>
+            </div>
+  
+          </ng-container>  
+      </div>
+    </div>
+  </div>

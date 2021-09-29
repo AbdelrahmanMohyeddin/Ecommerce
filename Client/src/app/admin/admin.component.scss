@@ -1,0 +1,12 @@
+#main {
+    margin-left: 300px;
+}
+  
+@media (max-width: 1800px) {
+    #header {
+      left: -300px;
+    }
+    #main {
+      margin-left: 0;
+    }
+}

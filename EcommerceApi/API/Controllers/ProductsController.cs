@@ -1,35 +1,33 @@
 ﻿using API.Dtos;
+using API.Errors;
 using API.Helpers;
 using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
 using Core.Specifications;
 using Infrastructure.Data;
+using Infrastructure.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace API.Controllers
 {
-
     public class ProductsController : BaseApiController
     {
         private readonly IGenericRepository<Product> productRepository;
-        private readonly IGenericRepository<ProductBrand> productBrandsRepository;
-        private readonly IGenericRepository<ProductType> productTypesRepository;
         private readonly IMapper _mapper;
 
+
         public ProductsController(IGenericRepository<Product> ProductRepository,
-            IGenericRepository<ProductBrand> ProductBrandRepository,
-            IGenericRepository<ProductType> ProductTypesRepository,
             IMapper mapper)
         {
             productRepository = ProductRepository;
-            productBrandsRepository = ProductBrandRepository;
-            productTypesRepository = ProductTypesRepository;
             _mapper = mapper;
         }
 
@@ -45,28 +43,39 @@ namespace API.Controllers
             return Ok(new Pagination<ProductToReturnDto>(productSpecParam.PageIndex,productSpecParam.PageSize,TotaleItems,Data));
         }
 
-        [HttpGet("product/{id}")]
+        [HttpPost]
+        public ActionResult<ProductToReturnDto> CreateProduct([FromForm] ProductToCreateDto productToCreate)
+        {
+            if(productToCreate != null)
+            {
+                UploadFile uploadFile = new UploadFile();
+                List<string> Path = new List<string> { "images", "products" };
+                string imageUrl = uploadFile.UploadedFile(productToCreate.ImageUrl,Path);
+
+                var product = new Product()
+                {
+                    Name = productToCreate.Name,
+                    Description = productToCreate.Description,
+                    Price = productToCreate.Price,
+                    ImageUrl = imageUrl,
+                    ProductBrandId = productToCreate.ProductBrand,
+                    ProductTypeId = productToCreate.ProductType
+                };
+
+                productRepository.Add(product);
+
+                return Ok(_mapper.Map<Product, ProductToReturnDto>(product));
+            }
+            return BadRequest(new ApiResponse(400,"Product details can not be null"));
+        }
+
+
+        [HttpGet("{id}")]
         public async Task<ActionResult<IReadOnlyList<ProductToReturnDto>>> Product(int id)
         {
             var Spec = new ProductsWithTypesAndBrandsSpecification(id);
             var product = await productRepository.GetEntityWithSpec(Spec);
             return Ok(_mapper.Map<Product, ProductToReturnDto>(product));
         }
-
-
-        [HttpGet("brands")]
-        public async Task<ActionResult<List<Product>>> ProductBrands()
-        {
-            return Ok(await productBrandsRepository.GetListAsync());
-        }
-
-
-        [HttpGet("types")]
-        public async Task<ActionResult<List<Product>>> ProductTypes()
-        {
-            return Ok(await productTypesRepository.GetListAsync());
-        }
-
-
     }
 }

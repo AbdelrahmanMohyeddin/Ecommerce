@@ -1,7 +1,7 @@
-<div class="d-flex justify-content-center">
+<div class="container d-flex justify-content-center">
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="form-signin col-4">
         <div class="text-center mb-4">
-           <h3 class="mb-3 font-weight-normal">Register</h3>
+           <h2 class="mb-3 text-muted font-weight-200">Register</h2>
         </div>
 
         <app-text-input formControlName="displayName" [label]="'User Name'"></app-text-input>

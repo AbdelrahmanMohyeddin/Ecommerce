@@ -2,6 +2,11 @@
 
 namespace Core.Entities.Identity
 {
+    public enum Role
+    {
+        admin,
+        user
+    }
     public class AppUser : IdentityUser
     {
         public string DisplayName { get; set; }

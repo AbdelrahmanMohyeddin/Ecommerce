@@ -12,6 +12,7 @@ import { TextInputComponent } from './component/text-input/text-input.component'
 import { OrderTotalsComponent } from './component/order-totals/order-totals.component';
 import { StepperComponent } from './component/stepper/stepper.component';
 import { BasketSummaryComponent } from './component/basket-summary/basket-summary.component';
+import { NotAuthorizedComponent } from './component/not-authorized/not-authorized.component';
 @NgModule({
   declarations: [
     StepperComponent,
@@ -20,13 +21,13 @@ import { BasketSummaryComponent } from './component/basket-summary/basket-summar
     ShopSearchComponent, 
     TextInputComponent, 
     OrderTotalsComponent, 
-    BasketSummaryComponent],
+    BasketSummaryComponent, NotAuthorizedComponent],
   imports: [
     CommonModule,
     PaginationModule.forRoot(),
     BsDropdownModule.forRoot(),
     ReactiveFormsModule,
-    CdkStepperModule
+    CdkStepperModule,
   ],
   exports:[
     PaginationModule,

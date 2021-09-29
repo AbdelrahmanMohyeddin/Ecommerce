@@ -1,7 +1,7 @@
 import { IOrderItem } from './../../models/order';
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BasketService } from 'src/app/basket/basket.service';
+import { BasketService } from './../../../user/basket/basket.service';
 import { IBasket, IBasketItem } from '../../models/basket';
 
 @Component({

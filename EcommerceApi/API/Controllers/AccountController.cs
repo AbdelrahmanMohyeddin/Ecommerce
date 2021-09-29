@@ -20,17 +20,23 @@ namespace API.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IAccountRepository _accountRepository;
         private readonly ITokenService _tokenService;
         private readonly IMapper _mapper;
 
         public AccountController(UserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager,
+            RoleManager<IdentityRole> roleManager,
+            IAccountRepository accountRepository,
             ITokenService tokenService,
             IMapper map)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
             _tokenService = tokenService;
+            _accountRepository = accountRepository;
             _mapper = map;
         }
 
@@ -42,11 +48,13 @@ namespace API.Controllers
             if (user == null) return BadRequest("Email Or Password Not Correct");
             var result = await _signInManager.CheckPasswordSignInAsync(user, loginData.Password, false);
             if (!result.Succeeded) return Unauthorized(new ApiResponse(401));
+            var userRoles = await _userManager.GetRolesAsync(user);
             return new UserDto
             {
                 DisplayName = user.DisplayName,
-                Token = _tokenService.CreateToken(user),
-                Email = user.Email
+                Token = _tokenService.CreateToken(user, userRoles),
+                Email = user.Email,
+                Role = userRoles
             };
         }
 
@@ -60,13 +68,27 @@ namespace API.Controllers
                 UserName = registerData.Email
             };
 
+            if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
+               await _roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+            if (!await _roleManager.RoleExistsAsync(UserRoles.User))
+                await _roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+
+
             var result = await _userManager.CreateAsync(user, registerData.Password);
+            if (!_userManager.Users.Any())
+                await _userManager.AddToRoleAsync(user, UserRoles.Admin);
+            else
+                await _userManager.AddToRoleAsync(user, UserRoles.User);
             if (!result.Succeeded) return BadRequest(new ApiResponse(400));
+
+            var userRoles = await _userManager.GetRolesAsync(user);
+
             return new UserDto
             {
                 DisplayName = user.DisplayName,
-                Token = _tokenService.CreateToken(user),
-                Email = user.Email
+                Token = _tokenService.CreateToken(user,userRoles),
+                Email = user.Email,
+                Role = userRoles
             };
         }
 
@@ -76,11 +98,13 @@ namespace API.Controllers
         {
             var user = await _userManager.GetUserByClaimsPrincipalAsync(HttpContext.User);
             if (user == null) return Unauthorized(new ApiResponse(401));
+            var userRoles = await _userManager.GetRolesAsync(user);
             return new UserDto
             {
                 DisplayName = user.DisplayName,
-                Token = _tokenService.CreateToken(user),
-                Email = user.Email
+                Token = _tokenService.CreateToken(user,userRoles),
+                Email = user.Email,
+                Role = userRoles
             };
         }
 

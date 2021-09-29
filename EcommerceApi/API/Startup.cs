@@ -1,16 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Infrastructure.Identity;
@@ -49,6 +40,7 @@ namespace API
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IPaymentService, PaymentService>();
+            services.AddScoped<IAccountRepository, AccountService>();
 
 
             services.AddDbContext<StoreContext>(options =>
@@ -59,6 +51,7 @@ namespace API
 
             var builder = services.AddIdentityCore<AppUser>();
             builder = new IdentityBuilder(builder.UserType, services);
+            builder.AddRoles<IdentityRole>();
             builder.AddEntityFrameworkStores<AppIdentityDbContext>();
             builder.AddSignInManager<SignInManager<AppUser>>();
 
@@ -92,7 +85,7 @@ namespace API
                     policy.AllowAnyHeader()
                           .AllowAnyMethod()
                           .AllowAnyOrigin();
-                          //.WithOrigins("http://localhost:4200/");
+                          //.WithOrigins("https://localhost:4200/");
                 });
             });
 

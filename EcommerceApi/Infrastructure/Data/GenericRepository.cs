@@ -51,9 +51,9 @@ namespace Infrastructure.Data
             return SpecificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(), Spec);
         }
 
-        public async Task Add(T entity)
+        public void Add(T entity)
         {
-            await _context.Set<T>().AddAsync(entity);
+            _context.Set<T>().AddAsync(entity);
         }
 
         public void Update(T entity)

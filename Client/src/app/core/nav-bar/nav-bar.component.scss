@@ -1,3 +1,8 @@
+.top-navbar{
+    height: 50px;
+    background: #418edb;
+    color: #000;
+}
 .cart-no{
     position: absolute;
     top: -12px;
@@ -14,7 +19,7 @@
 }
 
 .btn-secondary {
-    color: black;
+    color: white;
     background-color: transparent;
     border: none;
 }
@@ -27,4 +32,9 @@
 
 .dropdown-item{
     cursor: pointer;
+    
+}
+
+.main-navbar{
+    background:linear-gradient(90deg,#003da6,#00a98f);
 }

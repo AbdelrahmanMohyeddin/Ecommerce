@@ -5,6 +5,7 @@
 
 /* Importing Datepicker SCSS file. */
 @import "~ngx-bootstrap/datepicker/bs-datepicker";
+@import "~ngx-toastr/toastr.css";
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #f8f8f8; }
