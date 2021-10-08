@@ -1,1 +1,25 @@
-<p>show-product works!</p>
+<div class="card container">
+  <nav style="cursor: pointer;" class="d-flex justify-content-between">
+    <div onClick="history.back(-1)">
+      <i class="fas fa-angle-left"></i>    
+      Back to all Plants
+    </div>
+    <i class="far fa-heart fa-2x"></i>
+  </nav>
+
+  <div class="d-flex flex-row">
+    <div class="photo">
+      <img src="{{product.imageUrl}}">
+    </div>
+  
+    <div class="description">
+      <h2>{{product.name}}</h2>
+      <h4>{{product.productBrand}}</h4>
+      <h1>{{product.price | currency}}</h1>
+      <p>{{product.description}}</p>
+      <a href="admin/product/update/{{product.id}}" style="width: 100%;" class="btn btn-sm btn-outline-primary">Update</a>
+    </div>
+  </div>
+  
+
+</div>

@@ -1,0 +1,32 @@
+.card{
+    overflow: hidden;
+    position: relative;
+    border: 0px;
+    cursor: pointer;
+    .btn-group{
+        width: 100%;
+        .btn{
+            width: 50%;
+            margin-left: 0.2em;
+            margin-right: 0.2em;
+        }
+    }
+}
+.card-group-button{
+    position: absolute;
+    top:-150px;
+    left: 5px;
+    .card-button{
+        width: 90% !important;
+        margin: 2px;
+    }
+}
+
+.card:hover{
+    .card-group-button{
+        position: absolute;
+        top: 10px;
+        transition: all 0.5s;
+    }
+}
+

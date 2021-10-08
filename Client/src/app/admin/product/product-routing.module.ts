@@ -5,11 +5,14 @@ import { ProductComponent } from './product.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+const productsModule = ()=> import('./products/products.module').then(x=>x.ProductsModule);
+
 const routes:Routes = [
   {path:'',component:ProductComponent,children:[
-   {path:'admin/create',component:CreateProductComponent},
-   {path:'admin/update',component:UpdateProductComponent},
-   {path:'admin/show',component:ShowProductComponent},
+   {path:'',loadChildren:productsModule},
+   {path:'create',component:CreateProductComponent},
+   {path:'update/:id',component:UpdateProductComponent},
+   {path:'show/:id',component:ShowProductComponent},
   ]}
 ]
 

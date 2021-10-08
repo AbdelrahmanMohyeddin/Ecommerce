@@ -11,7 +11,7 @@ import { shopParams } from '../shared/models/shopParams';
   providedIn: 'root'
 })
 export class ProductServiceService {
-  baseURL = "https://localhost:44332/api/products/"; 
+  baseURL = "https://localhost:44332/api/products/";
   constructor(private http:HttpClient) { }
 
   GetPeoducts(shopParams:shopParams){
@@ -41,11 +41,19 @@ export class ProductServiceService {
     );
   }
 
-  CreateProduct(newProduct:any){
+  CreateProduct(newProduct:FormData){
     return this.http.post(this.baseURL,newProduct);
   }
 
+  UpdateProduct(targetProduct:FormData){
+    return this.http.put(this.baseURL,targetProduct);
+  }
+
   GetProduct(id:number){
-    return this.http.get<IProduct>(this.baseURL+"product/"+id);
+    return this.http.get<IProduct>(this.baseURL+id);
+  }
+
+  DeleteProduct(id:any){
+    return this.http.delete(this.baseURL+id);
   }
 }

@@ -1,3 +1,5 @@
+import { IProductType } from './../../shared/models/productType';
+import { CategoryService } from 'src/app/services/category.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./category.component.scss']
 })
 export class CategoryComponent implements OnInit {
-
-  constructor() { }
+  categories:IProductType[];
+  constructor(private categoryService:CategoryService) { }
 
   ngOnInit(): void {
+    this.getCategories();
+  }
+
+  getCategories(){
+    this.categoryService.GetCategories().subscribe(
+      res =>{
+        this.categories = res;
+      },err=>{
+        console.log(err);
+      }
+    )
   }
 
 }

@@ -6,13 +6,12 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
-import { CreateProductComponent } from './product/create-product/create-product.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
 @NgModule({
-  declarations: [AdminComponent, CreateProductComponent, DashboardComponent],
+  declarations: [AdminComponent, DashboardComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
